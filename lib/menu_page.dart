@@ -11,7 +11,8 @@ class MenuPage extends StatelessWidget {
   final String eventDate;
   final String additionalRequests;
 
-  MenuPage({
+  const MenuPage({
+    super.key,
     required this.userName,
     required this.address,
     required this.phone,
@@ -25,33 +26,55 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Menu Packages'),
+        foregroundColor: Colors.white,
+        title: const Text(
+          'Menu Packages',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.purple, Colors.blue],
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Text('View Menu Package Details'),
-
-             Expanded(
-                child: ListView.builder(
+            Expanded(
+              child: ListView.builder(
                 itemCount: Menues.samples.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(context,
+                      Navigator.push(
+                        context,
                         MaterialPageRoute(
-                          builder: (context) => PackageDetailsPage(menu: Menues.samples[index]),
+                          builder: (context) =>
+                            PackageDetailsPage(
+                              menu: Menues.samples[index],
+                              userName: userName,
+                              address: address,
+                              phone: phone,
+                              email: email,
+                              bookingDate: bookingDate,
+                              eventDate: eventDate,
+                              additionalRequests: additionalRequests,
+                            ),
                         ),
                       );
                     },
-                    child:
-                      buildRecipeCard(Menues.samples[index]),
+                    child: buildRecipeCard(Menues.samples[index]),
                   );
                 },
               ),
-             ),
+            ),
           ],
         ),
       ),
@@ -62,25 +85,25 @@ class MenuPage extends StatelessWidget {
     return Card(
       elevation: 2.0,
       shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10.0)),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
             Image(image: AssetImage(menues.imgUrl)),
-              const SizedBox(
+            const SizedBox(
               height: 14.0,
             ),
             Text(
               menues.title,
               style: const TextStyle(
                 fontSize: 20.0,
-                fontWeight: FontWeight.w700,
-                fontFamily: 'Palatino',
+                fontWeight: FontWeight.bold,
               ),
-            )
-          ]
-        )
+            ),
+          ],
+        ),
       ),
     );
   }
