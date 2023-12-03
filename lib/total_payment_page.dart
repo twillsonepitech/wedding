@@ -93,7 +93,7 @@ class _TotalPaymentPageState extends State<TotalPaymentPage> {
                       // For simplicity, we assume a fixed discount amount here
                       if (discountCode.toLowerCase() == 'discount123') {
                         setState(() {
-                          widget.totalPayment -= 100.0;
+                          widget.totalPayment *= 0.9;
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
