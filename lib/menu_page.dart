@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package_details_page.dart';
-import 'Menues.dart';
+import 'menues.dart';
 
 class MenuPage extends StatelessWidget {
   final String userName;
@@ -25,48 +25,33 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Menu Packages'),
+        title: const Text('Menu Packages'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('View Menu Package Details'),
+            // Text('View Menu Package Details'),
 
-            // Add UI elements for displaying menu package details and images
-            ListView.builder(
-              itemCount: Menues.samples.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {
-                    // Navigator.push(context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) {
-                    //       return RecipeDetail(recipe: Recipe.samples[index]);
-                    //     },
-                    //   ),
-                    // );
-                  },
-                  child:
-                    buildRecipeCard(Menues.samples[index]),
-                );
-              },
-            ),
-
-            SizedBox(height: 20),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PackageDetailsPage(),
-                  ),
-                );
-              },
-              child: Text('Next'),
-            ),
+             Expanded(
+                child: ListView.builder(
+                itemCount: Menues.samples.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(
+                          builder: (context) => PackageDetailsPage(menu: Menues.samples[index]),
+                        ),
+                      );
+                    },
+                    child:
+                      buildRecipeCard(Menues.samples[index]),
+                  );
+                },
+              ),
+             ),
           ],
         ),
       ),

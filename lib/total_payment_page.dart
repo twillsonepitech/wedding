@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class TotalPaymentPage extends StatefulWidget {
+  final double totalPayment;
+
+  const TotalPaymentPage({Key? key, required this.totalPayment}) :
+  super(key: key);
+
   @override
   _TotalPaymentPageState createState() => _TotalPaymentPageState();
 }
@@ -13,6 +18,7 @@ class _TotalPaymentPageState extends State<TotalPaymentPage> {
 
   @override
   Widget build(BuildContext context) {
+    totalPayment = widget.totalPayment;
     return Scaffold(
       appBar: AppBar(
         title: Text('Total Payment'),
@@ -40,6 +46,7 @@ class _TotalPaymentPageState extends State<TotalPaymentPage> {
             SizedBox(height: 20),
 
             Text('Calculate Total Payment'),
+            Text("Total payement is : $totalPayment €"),
 
             // Add UI elements for calculating total payment based on the number of guests
 
